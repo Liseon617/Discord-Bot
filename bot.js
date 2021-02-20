@@ -17,7 +17,8 @@ const {
 const bot = new Client();
 const puppeteer = require('puppeteer');
 const fetch = require('node-fetch');
-//const Plotly = require('plotly.js-dist')
+const {ChartJSNodeCanvas } = require('chartjs-node-canvas')
+
 const { cpuUsage } = require("process");
 
 bot.commands = new Discord.Collection();
@@ -277,9 +278,45 @@ bot.on("message", message => {
                     }
 
                     let voters = [];
+                    //create chart with options and votes
+                    const width = 800;
+                    const height = 600;
+                    const chartCallback = (ChartJS) => {
+                        ChartJS.plugins.register({
+                            beforeDraw: (chartInstance) => {
+                            const { chart } = chartInstance
+                            const { ctx } = chart
+                            ctx.fillStyle = 'white'
+                            ctx.fillRect(0, 0, chart.width, chart.height)
+                            },
+                        })
+                    }
 
                     collector.on('collect', (reaction, user) => {
-
+                        let Optionvotes = [];
+                        optionEmoji.forEach(function (x) {
+                            Optionvotes.push(embedReact.reactions.cache.filter(a => a.emoji.name == x).map(reactn => reactn.count)[0]);
+                        })
+                        const canvas = new ChartJSNodeCanvas (
+                            width,
+                            height,
+                            chartCallback
+                        )
+                        const configuration = {
+                            type: 'bar',
+                            data : {
+                                labels: options,
+                                datasets: [
+                                        {
+                                        label: "Poll options",
+                                        data: Optionvotes, 
+                                        backgroundColor: Colours.blue_light
+                                    },
+                                ],
+                            },
+                        }
+                        const image = canvas.renderToBuffer(configuration)
+                        const attachment = new Discord.MessageAttachment (image)
                         function totalVote() {
                             let totalVote = 0
                             optionEmoji.forEach(function (x) {
@@ -339,11 +376,36 @@ bot.on("message", message => {
                             .setColor(Colours.blue_light)
                             .addField(`**Votes: ** ${totalVote() - options.length}`, `**Voters: ** ${UniqueVoters}`)
                             .addField(`**Winner(s): ** ${winner()}`, '\u200B')
+                            .attachFiles(attachment)
+                            //add chart
                         embedReact.edit(awaitReact)
                     })
 
                     collector.on('remove', (reaction, user) => {
-                        
+                        let Optionvotes = [];
+                        optionEmoji.forEach(function (x) {
+                            Optionvotes.push(embedReact.reactions.cache.filter(a => a.emoji.name == x).map(reactn => reactn.count)[0]);
+                        })
+                        const canvas = new ChartJSNodeCanvas (
+                            width,
+                            height,
+                            chartCallback
+                        )
+                        const configuration = {
+                            type: 'bar',
+                            data : {
+                                labels: options,
+                                datasets: [
+                                        {
+                                        label: "Poll options",
+                                        data: Optionvotes, 
+                                        backgroundColor: Colours.blue_light
+                                    },
+                                ],
+                            },
+                        }
+                        const image = canvas.renderToBuffer(configuration)
+                        const attachment = new Discord.MessageAttachment (image)
                         function totalVote() {
                             let totalVote = 0
                             optionEmoji.forEach(function (x) {
@@ -358,7 +420,6 @@ bot.on("message", message => {
                             optionEmoji.forEach(function (x) {
                                 votes.push(embedReact.reactions.cache.filter(a => a.emoji.name == x).map(reactn => reactn.count)[0]);
                             })
-
 
                             var indexes = [];
                             var Tie = [];
@@ -403,6 +464,8 @@ bot.on("message", message => {
                             .setColor(Colours.blue_light)
                             .addField(`**Votes: ** ${totalVote() - options.length}`, `**Voters: ** ${UniqueVoters}`)
                             .addField(`**Winner(s): ** ${winner()}`, '\u200B')
+                            .attachFiles(attachment)
+                            //add chart
                         embedReact.edit(awaitReact)
                     })
                 });
