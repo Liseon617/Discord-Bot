@@ -1,0 +1,23 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Liseon",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "chart.js": "^2.9.4",
+    "chartjs-node-canvas": "^3.0.6",
+    "discord.js": "^12.2.0",
+    "newsapi": "^2.4.1",
+    "node-fetch": "^2.6.0",
+    "node-pre-gyp": "^0.12.0",
+    "plotly.js-dist": "^1.58.4",
+    "puppeteer": "^5.3.1",
+    "save": "^2.4.0"
+  }
+}

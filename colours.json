@@ -1,0 +1,23 @@
+{
+    "spring": "#00ff7f",
+    "summer": "#1e90ff",
+    "fall": "#ff8c00",
+    "winter": "#f0f8ff",
+    "purple-dark": "#6a006a",
+    "purple-light": "#a958a5",
+    "orange": "#ffa500",
+    "gold": "#daa520",
+    "red_dark": "#8e2430",
+    "red_light": "#f94343",
+    "blue_dark": "#3b5998",
+    "blue_light": "#ace9e7",
+    "cyan": "#5780cd",
+    "aqua": "#33a1ee",
+    "pink": "#ff9dbb",
+    "green_dark": "#2ac075",
+    "green_light": "#a1ee33",
+    "yellow_dark": "#B9770E",
+    "yellow_light": "#F7DC6F",
+    "white": "#f9f9f6",
+    "cream": "#ffdab9"
+}
