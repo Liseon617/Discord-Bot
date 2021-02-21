@@ -281,7 +281,7 @@ bot.on("message", message => {
                     //create chart with options and votes
                     const width = 800;
                     const height = 600;
-                    const chartCallback = (ChartJS) => {
+                    /*const chartCallback = (ChartJS) => {
                         ChartJS.plugins.register({
                             beforeDraw: (chartInstance) => {
                             const { chart } = chartInstance
@@ -290,7 +290,7 @@ bot.on("message", message => {
                             ctx.fillRect(0, 0, chart.width, chart.height)
                             },
                         })
-                    }
+                    }*/
 
                     collector.on('collect', (reaction, user) => {
                         let Optionvotes = [];
@@ -298,9 +298,9 @@ bot.on("message", message => {
                             Optionvotes.push(embedReact.reactions.cache.filter(a => a.emoji.name == x).map(reactn => reactn.count)[0]);
                         })
                         const canvas = new ChartJSNodeCanvas (
-                            width,
-                            height,
-                            chartCallback
+                            {width: width,
+                            height: height}
+                            //chartCallback
                         )
                         const configuration = {
                             type: 'bar',
@@ -387,9 +387,9 @@ bot.on("message", message => {
                             Optionvotes.push(embedReact.reactions.cache.filter(a => a.emoji.name == x).map(reactn => reactn.count)[0]);
                         })
                         const canvas = new ChartJSNodeCanvas (
-                            width,
-                            height,
-                            chartCallback
+                            {width: width,
+                            height: height}
+                            //chartCallback
                         )
                         const configuration = {
                             type: 'bar',
