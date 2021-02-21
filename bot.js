@@ -121,6 +121,14 @@ bot.on("message", message => {
             //bot.commands.get('chess').execute(message, args, Discord, Colours);
         } else if (args[0] === "othello") {
             bot.commands.get('othello').execute(message, args, Discord, Colours);
+        } else if (args[0] === "sudoku") {
+            //bot.commands.get('sudoku').execute(message, args, Discord, Colours);
+            //args[1] for easy medium or hard or very hard
+            class Board {
+                constructor (state = [
+                    
+                ])
+            }
         } else if (args[0] === "dice") {
             bot.commands.get('dice').execute(message, args, Discord, Colours);
         } else {
