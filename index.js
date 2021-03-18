@@ -4,10 +4,8 @@ const {
     Client,
     Attachment
 } = require("discord.js");
-const {
-    prefix,
-    token
-} = require("./config.json");
+require("dotenv").config();
+const prefix = process.env.PREFIX;
 const Colours = require("./colours.json")
 const deck = require('./deck.js');
 let Deck = new deck()
@@ -124,18 +122,6 @@ bot.on("message", message => {
         } else if (args[0] === "sudoku") {
             //bot.commands.get('sudoku').execute(message, args, Discord, Colours);
             //args[1] for easy medium or hard or very hard
-            class Board {
-                constructor (digits,
-                    rows,
-                    cols,
-                    squares,
-                    units,
-                    sqaure_unit_map,
-                    sqaure_peers_map,
-                    min_givens,
-                    nr_square,
-                    difficulty)
-            }
         } else if (args[0] === "dice") {
             bot.commands.get('dice').execute(message, args, Discord, Colours);
         } else {
@@ -178,4 +164,4 @@ bot.on("message", message => {
     }
 });
 
-bot.login(token);
+bot.login(process.env.TOKEN);
