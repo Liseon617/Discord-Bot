@@ -9,12 +9,11 @@
   "author": "Liseon",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^2.6.1",
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "newsapi": "^2.4.1",
     "node-fetch": "^2.6.0",
     "node-pre-gyp": "^0.12.0",
-    "plotly.js-dist": "^1.58.4",
     "puppeteer": "^5.3.1",
     "save": "^2.4.0",
     "tslib": "^1.14.1"
