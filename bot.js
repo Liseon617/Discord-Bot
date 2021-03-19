@@ -141,22 +141,6 @@ bot.on("message", message => {
         bot.commands.get('clear').execute(message, args);
     } else if (command === "prune") {
         bot.commands.get('prune').execute(message, args);
-    } else if (command === "pandacon") {
-        //bot.commands.get('pandacon').execute(message, args);
-        /*const writeStream = fs.createWriteStream("restaurants.csv")
-        WriteStream.write ('Restaurants\n')
-
-        (async() => {
-            const browser = await puppeteer.launch();
-            const page = await browser.newPage();
-            await page.goto(`https://www.instagram.com/pandaconnoisseur/`, {
-                withUntil: "networkidle2"
-            });
-            await page.waitForSelector('input[name="username"]');
-            await page.type('input[name="username"]', 'blzl.l.gtsj@gmail.com');
-            await page.type('input[name="password"]', 'T0020212B')
-            await page.click('button[type="submit"]');
-        })*/
     } else if (command === 'test') {
 
     } else {
