@@ -5,7 +5,7 @@ module.exports = {
          const anime_link = "https://myanimelist.net/anime/season";
 
         (async() => {
-            const browser = await puppeteer.launch();
+            const browser = await puppeteer.launch({args:['--no-sandbox']});
             const page = await browser.newPage();
             await page.goto(anime_link, {
                 withUntil: "networkidle2"
